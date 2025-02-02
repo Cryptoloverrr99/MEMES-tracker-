@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 import json
 import logging
-from core import DexAnalyzer, SolscanClient, AlertManager
+from core import dex_nalyzer, solscan_client, alert_manager
 from config import settings
 
 logging.basicConfig(
