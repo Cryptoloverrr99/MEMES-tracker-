@@ -1,6 +1,4 @@
-core/
-├── __init__.py
-├── dex_analyzer.py
-├── solscan_client.py
-├── alert_manager.py
-└── health_check.py  # Votre nouveau fichier
+from .dex_analyzer import DexAnalyzer
+from .solscan_client import SolscanClient
+from .alert_manager import AlertManager
+from core.health_check import HealthMonitor
