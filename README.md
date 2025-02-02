@@ -1,4 +1,6 @@
 memes-tracker/
+
+
 ├── config/
 │   ├── __init__.py
 │   ├── settings.py
@@ -11,4 +13,6 @@ memes-tracker/
 ├── data/
 │   └── processed_tokens.json
 ├── requirements.txt
-└── bot_main.py # MEMES-tracker-
+└── bot_main.py 
+
+# MEMES-tracker-
