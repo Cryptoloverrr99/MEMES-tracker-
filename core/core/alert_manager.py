@@ -27,3 +27,11 @@ class AlertManager:
             )
         except Exception as e:
             self.logger.error(f"Failed to send alert: {str(e)}")
+
+    async def send_error_alert(self, error_details):
+        message = f"🔥 **CRASH DU BOT** 🔥\n\n```\n{error_details}\n```"
+        await self.bot.send_message(
+            chat_id=api_keys.TELEGRAM_CHAT_ID,
+            text=message,
+            parse_mode=ParseMode.MARKDOWN
+    )
