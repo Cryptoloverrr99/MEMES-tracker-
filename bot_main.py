@@ -52,11 +52,18 @@ class MemeTracker:
             not solscan_data['dev_transfers']
         ])
 
+import traceback  # <-- Ligne ajoutée ici
+
 async def main():
     tracker = MemeTracker()
     while True:
-        await tracker.check_new_listings()
-        await asyncio.sleep(settings.CHECK_INTERVAL)
+        try:  # <-- Début ajouté
+            await tracker.check_new_listings()
+        except Exception as e:
+            logging.error(f"ERREUR: {traceback.format_exc()}")
+            await tracker.alerter.send_error_alert(traceback.format_exc())
+            await asyncio.sleep(60)
+        await asyncio.sleep(settings.CHECK_INTERVAL)  # <-- Fin ajouté
 
 if __name__ == "__main__":
     asyncio.run(main())
