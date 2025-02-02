@@ -1,11 +1,16 @@
 import aiohttp
-from functools import lru_cache  # <-- Ligne ajoutée ici
-from config import settings
+from functools import lru_cache
 
 class DexAnalyzer:
-    @lru_cache(maxsize=100)  # <-- Ligne ajoutée ici
+    @lru_cache(maxsize=100)
     async def fetch_new_tokens(self):
-        # Le reste reste identique
+        url = "https://api.dexscreener.com/token-profiles/latest/v1"
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                data = await response.json()
+                return self._process_tokens(data['data'])
+
     def _process_tokens(self, raw_tokens):
         processed = []
         for token in raw_tokens:
